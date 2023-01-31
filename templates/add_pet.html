@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}Add New Pet{% endblock title %}
+{%block content %}
+<h1 class='text-center'>Add New Pet</h1>
+<form method='POST'>
+  {{form.hidden_tag()}} {% for field in form if field.widget.input_type !=
+  'hidden'%}
+  
+  {{field.label(class_='p-1 mb-2 bg-light text-dark text-center mx-auto
+  d-block w-50')}} {{field (class_='text-center mx-auto d-block mb-2 w-50')}} 
+  {% for error in field.error %}
+  {{error}}
+  {% endfor %}
+  {% endfor %}
+<button class='p-2 mb-2 bg-success text-white text-center mx-auto d-block mb-2 w-50'>Submit</button
+</form>
+{% endblock content %}

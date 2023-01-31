@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %}Pet Adoption App{% endblock title %}
+{% block content %}
+<h1 class="text-center">Pet Adoption Agency</h1>
+<div class="rounded mx-auto d-block w-50">
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <small class="text-success">{{ message }}</small>
+  {% endfor %} {% endif %} {% endwith %} {% for pet in pets %}
+  <a href="{{pet.id}}">
+    <div class="m-6">
+      <h2>{{pet.name}}</h2>
+      <img src="{{pet.photo_url}}" class="img-thumbnail" />
+      <p class="text-info">
+        {{pet.name}} is {% if pet.available %}available {% else %} not available
+        {% endif %}
+      </p>
+    </div>
+  </a>
+  {% endfor %}
+
+  <a href="/add" class="btn btn-primary btn-lg btn-block mb-5">Add Pet</a>
+</div>
+{% endblock content %}

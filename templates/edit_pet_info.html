@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block title %}Pet Adoption App{% endblock title %}
+{% block content %}
+<div class="m-3">
+  <h1>{{ pet.name }}</h1>
+
+  {% if pet.photo_url %}
+  <img class="img-fluid" src="{{ pet.photo_url }}" />
+  {% endif %}
+
+  <h2>Update</h2>
+
+  <form method="POST">
+    {% include "_form.html" %}
+    <button class="btn btn-primary" type="submit">Update</button>
+  </form>
+</div>
+{% endblock content %}
