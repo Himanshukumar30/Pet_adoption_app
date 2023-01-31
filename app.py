@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, redirect
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db,  connect_db, Pet
+from models import db, connect_db, Pet
 from forms import AddPetForm, EditPetForm
 
 app = Flask(__name__)
@@ -31,8 +31,10 @@ def add_pet():
         species = form.species.data
         photo = form.photo.data
         age = form.age.data
-        notes = form.Notes.data
-        new_pet = Pet(name=name, species=species ,photo_url= photo, age = age ,notes=notes)
+        notes = form.notes.data
+        available = form.available.data
+        new_pet = Pet(name=name, species=species ,photo_url= photo, age=age ,notes=notes, available = available)
+        
         db.session.add(new_pet)
         db.session.commit()
         flash(f"Added {name},I am a {species} and my age is {age}")
@@ -49,8 +51,8 @@ def show_pet_info(pet_id):
     if form.validate_on_submit():
         pet.name = form.name.data
         pet.species = form.species.data
-        pet.photo = form.photo.data
-        pet.notes = form.Notes.data
+        pet.photo_url = form.photo_url.data
+        pet.notes = form.notes.data
         pet.available = form.available.data
         # db.session.update(pet)
         db.session.commit()
